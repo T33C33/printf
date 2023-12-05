@@ -28,13 +28,6 @@ int _printf(const char *format, ...)
 
 				jantee_count += write(1, s, strlen(s));
 			}
-			else if (*format == 'd' || *format == 'i')
-			{
-				int num_di = va_arg(argument_list, int);
-				char str[12];
-				sprintf(str, "%d", num_di);
-
-				jantee_count += write(1, str, strlen(str));
 			else if (*format == '%')
 			{
 				jantee_count += write(1, "%", 1);
