@@ -1,14 +1,14 @@
 #include "main.h"
 
 /**
- *_printf - produces output format
- *@format: is a character string
+ * _printf - produces output format
+ * @format: is a character string
  *
- *Return: 0
+ * Return: 0
  */
 int _printf(const char *format, ...)
 {
-	int jantee_count = 0, length = 0, new_int;
+	int jantee_count = 0, length = 0;
 	va_list argument_list;
 	char character, *string;
 
@@ -46,12 +46,6 @@ int _printf(const char *format, ...)
 					length++;
 				write(1, string, length);
 				jantee_count += length;
-			}
-			else if ((*format == 'd') || (*format == 'i'))
-			{
-				new_int = va_arg(argument_list, int);
-				write(1, &new_int, 1);
-				jantee_count++;
 			}
 		}
 		format++;
