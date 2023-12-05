@@ -36,6 +36,7 @@ int print_int(va_list list)
 {
 	int num = va_arg(list, int);
 	char str[12];
+
 	sprintf(str, "%d", num);
 	return (write(1, str, strlen(str)));
 }
