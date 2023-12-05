@@ -41,7 +41,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 'c')
 			{
-				int character = va_arg(argument_list, int);
+				char character = va_arg(argument_list, int);
 				write(1, &character, 1);
 				jantee_count++;
 			}
