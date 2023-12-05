@@ -10,17 +10,17 @@
 
 int _printf(const char *format, ...)
 {
-	int jantee_count = 0;
-	va_list list_of_arg;
+	int jantee_count = 0, length = 0;
+	va_list argument_list;
 
-	if (format == NULL);
+	if (format == NULL)
 	{
 		return (-1);
 	}
 
-	va_start(list_of_arg, format);
+	va_start(argument_list, format);
 
-	while(*format != '\0')
+	while (*format)
 	{
 		if (*format != '%')
 		{
@@ -30,7 +30,34 @@ int _printf(const char *format, ...)
 		else
 		{
 			format++;
+			if (*format == '\0')
+			{
+				break;
+			}
+			if (*format == '%')
+			{
+				write(1, format, 1);
+				jantee_count++;
+			}
+			else if (*format == 'c')
+			{
+				int character = va_arg(argument_list, int);
+				write(1, &character, 1);
+				jantee_count++;
+			}
+			else if (*format == 's')
+			{
+				char *string = va_arg(argument_list, char*);
+				while (string[length] != '\0')
+				{
+					length++;
+				}
+				write (1, string, length);
+				jantee_count += length;
+			}
 		}
-		if (*format == 'c')
-		{
-			int 
+		format++;
+	}
+	va_end(argument_list);
+	return (jantee_count);
+}
